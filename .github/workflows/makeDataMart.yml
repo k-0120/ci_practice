@@ -21,3 +21,18 @@ jobs:
 
       - name: Make datasets
         run: bq --location=us mk --force --dataset test_dataset
+
+      - name: Make view
+        run: |
+          for f in $(find data_marts -type f -name *.sql)
+          do
+            dataset_name=test_dataset
+            view_name=$(echo $f | sed -e "s/.sql//g" -e "s/.*\///g" )
+            if [[ view_name =~ table_ ]]
+              then
+                table_name=$(echo $view_name | sed 's/table_//g')
+                bq query --replace --use_legacy_sql=false --destination_table ${dataset_name}.${table_name} < $f
+              else
+                bq mk --force --use_legacy_sql=false --view "`cat $f`" ${dataset_name}.${view_name}
+            fi
+          done
