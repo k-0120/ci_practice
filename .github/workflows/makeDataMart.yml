@@ -26,17 +26,6 @@ jobs:
             bq --location asia-northeast1 mk --force --dataset $dataset_name
           done
 
-      - name: Define access control
-        run: |
-          for dataset_name in $(find data_marts -type d | tail -n +2 | sed -e 's/^data_marts\//mart_/g' -e 's/\//_/g')
-          do
-            data=$(bq show --format=prettyjson $GCP_PROJECT:events_20211105 | jq -r '.access' | tr -d '\n')
-            pattern=".access|=${data}"
-            bq show --format=prettyjson $GCP_PROJECT:$dataset_name | jq "$pattern" > tmp.json
-            bq update --source tmp.json $GCP_PROJECT:$dataset_name
-          done
-
-
       - name: Make view
         run: |
           for f in $(find data_marts -type f -name *.sql)
