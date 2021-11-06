@@ -33,6 +33,6 @@ jobs:
                 table_name=$(echo $view_name | sed 's/table_//g')
                 bq query --replace --use_legacy_sql=false --destination_table ${dataset_name}.${table_name} < $f
               else
-                bq mk --force --use_legacy_sql=false --view "`cat $f`" ${dataset_name}.${view_name}
+                echo hellow, world!
             fi
           done
