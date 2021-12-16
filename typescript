@@ -1,0 +1,17 @@
+Script started on 2021-12-16 14:56:36+00:00 [<not executed on terminal>]
+==== finding fixable violations ====
+== [[30m[1mdata_marts/test/sample.sql[0m] [31mFAIL[0m
+[34mL:   1 | P:   7 | L001 | [0mUnnecessary trailing whitespace.
+[34mL:   3 | P:   5 | L019 | [0mFound leading comma. Expected only trailing.
+[34mL:   4 | P:   3 | L019 | [0mFound leading comma. Expected only trailing.
+[34mL:   5 | P:   9 | L019 | [0mFound leading comma. Expected only trailing.
+[34mL:   7 | P:   3 | L019 | [0mFound leading comma. Expected only trailing.
+[34mL:   8 | P:   1 | L001 | [0mUnnecessary trailing whitespace.
+==== fixing violations ====
+6 fixable linting violations found
+[31mFORCE MODE[0m: Attempting fixes...
+Persisting Changes...
+== [[30m[1mdata_marts/test/sample.sql[0m] [32mPASS[0m
+Done. Please check your files to confirm.
+[0m
+Script done on 2021-12-16 14:56:37+00:00 [COMMAND_EXIT_CODE="0"]
