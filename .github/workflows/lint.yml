@@ -12,5 +12,7 @@ jobs:
             python-version: "3.8"
       - name: Install SQLFluff
         run: "pip install sqlfluff==0.5.3"
+      - name: Setup faketty
+        uses: Yuri6037/Action-FakeTTY@v1.1
       - name: Lint
-        run: echo "y" | echo "n" | echo "s" # sqlfluff fix data_marts/test/sample.sql --rules L001,L002,L004,L006,L010,L019 --dialect bigquery
+        run: echo "y" | sqlfluff fix data_marts/test/sample.sql --rules L001,L002,L004,L006,L010,L019 --dialect bigquery
