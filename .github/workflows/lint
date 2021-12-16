@@ -1,9 +1,6 @@
 name: Lint Models
 
-on: [pull_request]
-
-env: 
-  TARGET_BRANCH: ${{ github.base_ref }}
+on: push
 
 jobs:
   lint-models:

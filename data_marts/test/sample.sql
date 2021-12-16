@@ -6,4 +6,5 @@ SELECT
 FROM 
   `valid-progress-257914.analytics_254523623.events_20211105`
   , UNNEST(event_params)
+  
 ;
