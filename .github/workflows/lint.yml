@@ -12,15 +12,10 @@ jobs:
             python-version: "3.8"
       - name: Install SQLFluff
         run: "pip install sqlfluff==0.5.3"
+      - name: 'Fetch'
+        run: git fetch --depth 1 origin ${TARGET_BRANCH}
       - name: 'Lint models'
         run: |
           for file in $(git diff origin/${TARGET_BRANCH} HEAD --diff-filter=AM --name-only -- "*.sql") ; do
             sqlfluff fix ${file} --rules L001,L002,L004,L006,L010,L019 --dialect bigquery
-          done
-
-      - name: Lint
-        run: |
-          for f in $(find data_marts -type f -name *.sql)
-          do
-            sqlfluff lint $f --rules L001,L002,L004,L006,L010,L019 --dialect bigquery
           done
