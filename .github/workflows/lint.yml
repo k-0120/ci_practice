@@ -4,7 +4,7 @@ on: push
 
 jobs:
   lint-models:
-    runs-on: linux-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: "actions/checkout@v2"
       - uses: "actions/setup-python@v2"
@@ -15,4 +15,4 @@ jobs:
       - name: Setup faketty
         uses: Yuri6037/Action-FakeTTY@v1.1
       - name: Lint
-        run: echo y | faketty sqlfluff fix data_marts/test/sample.sql --rules L001,L002,L004,L006,L010,L019 --dialect bigquery
+        run: echo y | faketty sqlfluff lint data_marts/test/sample.sql --rules L001,L002,L004,L006,L010,L019 --dialect bigquery
