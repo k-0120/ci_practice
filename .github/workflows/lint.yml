@@ -17,5 +17,5 @@ jobs:
       - name: 'Lint models'
         run: |
           for file in $(git diff origin/${TARGET_BRANCH} HEAD --diff-filter=AM --name-only -- "*.sql") ; do
-            sqlfluff lint ${file} --rules L001,L002,L004,L006,L010,L019 --dialect bigquery
+            sqlfluff fix ${file} --rules L001,L002,L004,L006,L010,L019 --dialect bigquery
           done
