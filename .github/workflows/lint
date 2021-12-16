@@ -1,0 +1,24 @@
+name: Lint Models
+
+on: [pull_request]
+
+env: 
+  TARGET_BRANCH: ${{ github.base_ref }}
+
+jobs:
+  lint-models:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: "actions/checkout@v2"
+      - uses: "actions/setup-python@v2"
+        with:
+            python-version: "3.8"
+      - name: Install SQLFluff
+        run: "pip install sqlfluff==0.5.3"
+      - name: 'Fetch'
+        run: git fetch --depth 1 origin ${TARGET_BRANCH}
+      - name: 'Lint models'
+        run: |
+          for file in $(git diff origin/${TARGET_BRANCH} HEAD --diff-filter=AM --name-only -- "*.sql") ; do
+            sqlfluff lint ${file} --rules L001,L002,L004,L006,L010,L019 --dialect bigquery
+          done
