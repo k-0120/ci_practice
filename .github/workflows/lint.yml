@@ -13,7 +13,4 @@ jobs:
       - name: Install SQLFluff
         run: "pip install sqlfluff==0.5.3"
       - name: Lint
-        run: |
-          for f in $(find data_marts -type f -name *.sql)
-            sqlfluff fix $f --rules L001,L002,L004,L006,L010,L019 --dialect bigquery
-          done
+        run: sqlfluff fix /data_marts/sample.sql --rules L001,L002,L004,L006,L010,L019 --dialect bigquery
