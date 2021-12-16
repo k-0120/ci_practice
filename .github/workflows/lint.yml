@@ -16,3 +16,6 @@ jobs:
         uses: Yuri6037/Action-FakeTTY@v1.1
       - name: Lint
         run: faketty sqlfluff fix data_marts/test/sample.sql --rules L001,L002,L004,L006,L010,L019 --dialect bigquery -f
+     - uses: stefanzweifel/git-auto-commit-action@v3.0.0
+        with:
+          commit_message: Apply Prettier Change
